@@ -1,30 +1,20 @@
-import useStats from "../utils/useStats";
+import Stats from "../components/Stats";
+import CountrySelector from "../components/CountrySelector";
 
-function Stats() {
-  const stats = useStats();
-  if (!stats) return <p>Loading...</p>;
-  return (
-    <div>
-      <div className="statBlock">
-        <h3>Confirmed:</h3>
-        <span>{stats.confirmed.value}</span>
-      </div>
-      <div className="statBlock">
-        <h3>Deaths:</h3>
-        <span>{stats.deaths.value}</span>
-      </div>
-      <div className="statBlock">
-        <h3>Recovered:</h3>
-        <span>{stats.recovered.value}</span>
-      </div>
-    </div>
-  );
-}
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+`;
 
 export default function IndexPage() {
   return (
     <div>
-      <Stats></Stats>
+      <GlobalStyle />
+      <Stats url="https://covid19.mathdro.id/api"></Stats>
+      <CountrySelector></CountrySelector>
     </div>
   );
 }
